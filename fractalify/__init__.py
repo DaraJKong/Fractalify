@@ -75,12 +75,16 @@ def register():
 		default = True
 	)
 	
+	bpy.utils.register_class(OBJECT_OT_fractalify)
 	bpy.utils.register_class(VIEW3D_PT_fractalify)
+	
 	bpy.types.VIEW3D_MT_object_quick_effects.append(quick_effects_menu_draw)
 
 def unregister():
 	del bpy.types.Scene.iterations_number
 	del bpy.types.Scene.include_source
 	
+	bpy.utils.unregister_class(OBJECT_OT_fractalify)
 	bpy.utils.unregister_class(VIEW3D_PT_fractalify)
+	
 	bpy.types.VIEW3D_MT_object_quick_effects.remove(quick_effects_menu_draw)
