@@ -24,9 +24,9 @@ bl_info = {
 	"version": (1, 0),
 	"blender": (2, 93, 0),
 	"location": "View3D > Object > Quick Effects > Fractalify",
-	"description": "Iterates a pattern to create a fractal easily",
+	"description": "Iterates patterns to create fractals easily",
 	"warning": "MAY CREATE A LOT OF GEOMETRY!",
-	"doc_url": "",
+	"doc_url": "https://github.com/DaraJKong/Fractalify#readme",
 	"category": "Object",
 }
 
@@ -46,12 +46,16 @@ class VIEW3D_PT_fractalify(bpy.types.Panel):
 		col.prop(context.scene, "iterations_number")
 		col.prop(context.scene, "include_source")
 		
+		if not context.scene.include_source:
+			col.prop(context.scene, "hide_source")
+		
 		if len(context.selected_objects) > 1:
 			if context.active_object.select_get():
 				props = self.layout.operator(operator.OBJECT_OT_fractalify.bl_idname, text="Fractalify Selection", icon="PLAY")
 				
 				props.iterations_number = context.scene.iterations_number
 				props.include_source = context.scene.include_source
+				props.hide_source = context.scene.hide_source
 			else:
 				self.layout.label(text="The active object must be selected", icon="ERROR")
 		elif context.selected_objects:
@@ -65,6 +69,7 @@ def quick_effects_menu_draw(self, context):
 def register():
 	bpy.types.Scene.iterations_number = bpy.props.IntProperty(
 		name = "Iterations Number",
+		description = "Number of repetitions",
 		default = 1,
 		min = 1,
 		soft_max = 10
@@ -72,6 +77,13 @@ def register():
 	
 	bpy.types.Scene.include_source = bpy.props.BoolProperty(
 		name = "Include Source",
+		description = "If true, the source object will be included in the pattern repetition",
+		default = True
+	)
+	
+	bpy.types.Scene.hide_source = bpy.props.BoolProperty(
+		name = "Hide Source",
+		description = "Hides the source object in the viewport when it's excluded",
 		default = True
 	)
 	
@@ -83,6 +95,7 @@ def register():
 def unregister():
 	del bpy.types.Scene.iterations_number
 	del bpy.types.Scene.include_source
+	del bpy.types.Scene.hide_source
 	
 	bpy.utils.unregister_class(operator.OBJECT_OT_fractalify)
 	bpy.utils.unregister_class(VIEW3D_PT_fractalify)
