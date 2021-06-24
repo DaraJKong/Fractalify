@@ -3,9 +3,11 @@ This add-on allows you to create [n-flake](https://en.wikipedia.org/wiki/N-flake
 
 ## Table of Contents
 
+[Download and installation](#download-and-installation)
 
+[How to use](#how-to-use)
 
-## Download and installation
+## Download and Installation
 1. Download the add-on:
 
 |Version|Blender Version|Download URL|
