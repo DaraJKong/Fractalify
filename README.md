@@ -1,12 +1,16 @@
 # Fractalify Blender Add-on
 This add-on allows you to create [n-flake](https://en.wikipedia.org/wiki/N-flake) like fractals by recursively repeating a selected pattern. It is compatible with Blender 2.93 LTS.
 
+## Table of Contents
+
+
+
 ## Download and installation
 1. Download the add-on:
 
 |Version|Blender Version|Download URL|
 |---|---|---|
-|v1.0 |Blender 2.93|[Download](https://github.com/DaraJKong/Fractalify/releases/tag/v1.0)|
+|v1.0 |[Blender 2.93](https://www.blender.org/download/releases/2-93/)|[Download](https://github.com/DaraJKong/Fractalify/releases/tag/v1.0)|
 
 The simplest method is to download directly the .zip file containing \__init__.py, not the entire repository as a .zip file. The reason is you need to have the correct add-on structure for it to install properly into Blender.
 
@@ -17,4 +21,8 @@ The simplest method is to download directly the .zip file containing \__init__.p
 <img src="https://github.com/DaraJKong/Fractalify/blob/4bafc4a4c14ef315d55df9bbb3410e553ab99054/docs/BlenderEnableAddon.png" width="700" alt="Enable Addon">
 
 4. Find the add-on in the right side panel of the 3D Viewport. You can open that panel by pressing the N key.
+
+## How to use
+
+Once the addon is installed, you will find it in many ways. The best way is to open the right side panel (N). There you will find a tab named "Fractalify" with a user-friendly interface. You can also access the add-on under "Object > Quick Effects > Fractalify" in the 3D Viewport.
 <img src="https://github.com/DaraJKong/Fractalify/blob/d6a403c14193a9e3ef851955d3e1ba220077f452/docs/HowToFindAddon.png" width="700" alt="Find Addon">
