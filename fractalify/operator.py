@@ -20,6 +20,12 @@ class OBJECT_OT_fractalify(bpy.types.Operator):
 		default = True
 	)
 	
+	hide_source: bpy.props.BoolProperty(
+		name = "Hide Source",
+		description = "Hides the source object in the viewport when it's excluded",
+		default = True
+	)
+	
 	@classmethod
 	def poll(cls, context):
 		return context.area.type == "VIEW_3D"
@@ -28,6 +34,9 @@ class OBJECT_OT_fractalify(bpy.types.Operator):
 		if len(context.selected_objects) > 1 and context.active_object.select_get():
 			for i in range(self.iterations_number):
 				fractalify_selection(self, context)
+			
+			if (not self.include_source) and self.hide_source:
+				context.view_layer.objects.active.display_type = "WIRE"
 		else:
 			return {"CANCELLED"}
 		
@@ -71,6 +80,3 @@ def fractalify_selection(self, context):
 	
 	source.select_set(True)
 	context.view_layer.objects.active = source
-	
-	if not self.include_source:
-		source.display_type = "WIRE"
