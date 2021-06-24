@@ -1,3 +1,5 @@
+import bpy
+
 class OBJECT_OT_fractalify(bpy.types.Operator):
 	"""Repeats the selected pattern"""
 	bl_idname = "object.fractalify"
