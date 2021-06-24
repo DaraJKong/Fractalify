@@ -32,6 +32,8 @@ bl_info = {
 
 import bpy
 
+from . import operator
+
 class VIEW3D_PT_fractalify(bpy.types.Panel):
 	bl_space_type = "VIEW_3D"
 	bl_region_type = "UI"
