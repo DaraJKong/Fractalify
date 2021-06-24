@@ -48,7 +48,7 @@ class VIEW3D_PT_fractalify(bpy.types.Panel):
 		
 		if len(context.selected_objects) > 1:
 			if context.active_object.select_get():
-				props = self.layout.operator(OBJECT_OT_fractalify.bl_idname, text="Fractalify Selection", icon="PLAY")
+				props = self.layout.operator(operator.OBJECT_OT_fractalify.bl_idname, text="Fractalify Selection", icon="PLAY")
 				
 				props.iterations_number = context.scene.iterations_number
 				props.include_source = context.scene.include_source
@@ -60,7 +60,7 @@ class VIEW3D_PT_fractalify(bpy.types.Panel):
 			self.layout.label(text="No pattern selected", icon="ERROR")
 
 def quick_effects_menu_draw(self, context):
-	self.layout.operator(OBJECT_OT_fractalify.bl_idname)
+	self.layout.operator(operator.OBJECT_OT_fractalify.bl_idname)
 
 def register():
 	bpy.types.Scene.iterations_number = bpy.props.IntProperty(
@@ -75,7 +75,7 @@ def register():
 		default = True
 	)
 	
-	bpy.utils.register_class(OBJECT_OT_fractalify)
+	bpy.utils.register_class(operator.OBJECT_OT_fractalify)
 	bpy.utils.register_class(VIEW3D_PT_fractalify)
 	
 	bpy.types.VIEW3D_MT_object_quick_effects.append(quick_effects_menu_draw)
@@ -84,7 +84,7 @@ def unregister():
 	del bpy.types.Scene.iterations_number
 	del bpy.types.Scene.include_source
 	
-	bpy.utils.unregister_class(OBJECT_OT_fractalify)
+	bpy.utils.unregister_class(operator.OBJECT_OT_fractalify)
 	bpy.utils.unregister_class(VIEW3D_PT_fractalify)
 	
 	bpy.types.VIEW3D_MT_object_quick_effects.remove(quick_effects_menu_draw)
