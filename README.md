@@ -25,5 +25,6 @@ The simplest method is to download directly the .zip file containing \__init__.p
 
 ## How to use
 
-Once the addon is installed, you will find it in many ways. The best way is to open the right side panel (N). There you will find a tab named "Fractalify" with a user-friendly interface. You can also access the add-on under "Object > Quick Effects > Fractalify" in the 3D Viewport.
+Once the addon is installed, you will find it in many places. The best is to open the right side panel (N). There you will find a tab named "Fractalify" with a user-friendly interface. You can also access the add-on under "Object > Quick Effects > Fractalify" in the 3D Viewport. Once you use the operator, the redo panel will let you tweak the settings of the last fractalization.
+
 <img src="https://github.com/DaraJKong/Fractalify/blob/d6a403c14193a9e3ef851955d3e1ba220077f452/docs/HowToFindAddon.png" width="700" alt="Find Addon">
