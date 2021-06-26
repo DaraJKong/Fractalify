@@ -30,9 +30,13 @@ bl_info = {
 	"category": "Object",
 }
 
-import bpy
+if "bpy" in locals():
+	import importlib
+	importlib.reload(operator)
+else:
+	from . import operator
 
-from . import operator
+import bpy
 
 class VIEW3D_PT_fractalify(bpy.types.Panel):
 	bl_space_type = "VIEW_3D"
@@ -49,6 +53,8 @@ class VIEW3D_PT_fractalify(bpy.types.Panel):
 		if not context.scene.include_source:
 			col.prop(context.scene, "hide_source")
 		
+		col.prop(context.scene, "separate_objects")
+		
 		if len(context.selected_objects) > 1:
 			if context.active_object.select_get():
 				props = self.layout.operator(operator.OBJECT_OT_fractalify.bl_idname, text="Fractalify Selection", icon="PLAY")
@@ -56,6 +62,7 @@ class VIEW3D_PT_fractalify(bpy.types.Panel):
 				props.iterations_number = context.scene.iterations_number
 				props.include_source = context.scene.include_source
 				props.hide_source = context.scene.hide_source
+				props.separate_objects = context.scene.separate_objects
 			else:
 				self.layout.label(text="The active object must be selected", icon="ERROR")
 		elif context.selected_objects:
@@ -77,13 +84,19 @@ def register():
 	
 	bpy.types.Scene.include_source = bpy.props.BoolProperty(
 		name = "Include Source",
-		description = "If true, the source object will be included in the pattern repetition",
+		description = "If false, the source object will be excluded from the pattern repetition, effectively showing only the last iteration of the fractal",
 		default = True
 	)
 	
 	bpy.types.Scene.hide_source = bpy.props.BoolProperty(
 		name = "Hide Source",
 		description = "Hides the source object in the viewport when it's excluded",
+		default = True
+	)
+	
+	bpy.types.Scene.separate_objects = bpy.props.BoolProperty(
+		name = "Separate Objects",
+		description = "Creates individual objects instead of modifying the geometry of the pattern",
 		default = True
 	)
 	
@@ -96,6 +109,7 @@ def unregister():
 	del bpy.types.Scene.iterations_number
 	del bpy.types.Scene.include_source
 	del bpy.types.Scene.hide_source
+	del bpy.types.Scene.separate_objects
 	
 	bpy.utils.unregister_class(operator.OBJECT_OT_fractalify)
 	bpy.utils.unregister_class(VIEW3D_PT_fractalify)
